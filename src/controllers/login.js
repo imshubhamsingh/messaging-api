@@ -17,7 +17,7 @@ export default ({ config, db }) => {
         if (err) throw err;
         if (!user || !user.comparePassword(req.body.password)) {
           return res.status(401).json({
-            message: "Authentication failed. Invalid user or password."
+            message: "Authentication failed. Invalid username or password."
           });
         }
         return res.json({
