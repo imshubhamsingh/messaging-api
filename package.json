@@ -9,12 +9,19 @@
     "build": "babel src -s D -d dist",
     "start": "npm run -s build && NODE_ENV=production node start dist"
   },
-  "keywords": ["Express", "RestAPI", "MongoDB", "Mongoose", "Messaging"],
+  "keywords": [
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose",
+    "Messaging"
+  ],
   "author": "Shubham Singh",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "mongoose": "^5.0.11"
   },
