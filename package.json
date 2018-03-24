@@ -1,0 +1,27 @@
+{
+  "name": "messaging-app",
+  "version": "0.0.1",
+  "description": "NodeJS application to provide REST APIs for a messaging",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src\"",
+    "lint": "eslint src",
+    "build": "babel src -s D -d dist",
+    "start": "npm run -s build && NODE_ENV=production node start dist"
+  },
+  "keywords": ["Express", "RestAPI", "MongoDB", "Mongoose", "Messaging"],
+  "author": "Shubham Singh",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.11"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "nodemon": "^1.17.2"
+  }
+}
