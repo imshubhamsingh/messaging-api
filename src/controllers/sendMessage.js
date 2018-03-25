@@ -27,7 +27,7 @@ export default ({ config, db }) => {
         message: "No such User"
       });
     }
-    if (!user.blockedUser.includes(req.body.to)) {
+    if (!receiverUser.blockedUser.includes(req.user.username)) {
       newMessage.save((err, msg) => {
         if (err) {
           return res.status(400).send({
@@ -41,7 +41,7 @@ export default ({ config, db }) => {
       });
     } else {
       return res.status(550).json({
-        message: "Cannot send message to blocked User"
+        message: "Cannot send message as you are blocked"
       });
     }
   });
