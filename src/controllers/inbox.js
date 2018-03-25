@@ -5,6 +5,7 @@ import Message from "../models/message";
 
 import { SALT } from "../config";
 import { isAuthenticate } from "../middlewares/auth";
+import { standardizeMessages } from "../utils/messageUtils";
 
 export default ({ config, db }) => {
   let inbox = Router();
@@ -13,7 +14,7 @@ export default ({ config, db }) => {
     let messages = await Message.find({
       to: req.user.username
     });
-    res.json([...messages]);
+    res.json(standardizeMessages(messages));
   });
 
   return inbox;

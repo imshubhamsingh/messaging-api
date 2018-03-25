@@ -1,6 +1,11 @@
 import jwt from "jsonwebtoken";
 import { SECRET } from "../config";
 
+/**
+ *  isAuthenticate - checks if user's token is valid
+ *  @param   {Object} req  Object containing token
+ *  @returns {Object}       users object to request
+ */
 export const isAuthenticate = (req, res, next) => {
   if (
     req.hasOwnProperty("headers") &&

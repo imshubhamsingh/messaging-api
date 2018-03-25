@@ -3,6 +3,10 @@ import bcrypt from "bcrypt";
 
 const Schema = mongoose.Schema;
 
+//= ===============================
+// User Schema
+//= ===============================
+
 let UserSchema = new Schema({
   firstName: {
     type: String,
@@ -34,10 +38,16 @@ let UserSchema = new Schema({
   }
 });
 
+//= ===============================
+// User model methods
+//= ===============================
+
+// Method to compare password for login
 UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.hashPassword);
 };
 
+// Method to block other users
 UserSchema.methods.blockUser = function(username) {
   if (!this.blockedUser.includes(username)) {
     this.blockedUser.push(username);

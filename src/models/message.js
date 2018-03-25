@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+//= ===============================
+// Message Schema
+//= ===============================
+
 let MessageSchema = new Schema({
   from: {
     type: String,
