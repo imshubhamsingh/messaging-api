@@ -30,7 +30,9 @@ let UserSchema = new Schema({
   }
 });
 
-UserSchema.methods.comparePassword = password =>
-  bcrypt.compareSync(password, this.hash_password);
+UserSchema.methods.comparePassword = function(password) {
+  console.log(bcrypt.compareSync(password, this.hashPassword));
+  return bcrypt.compareSync(password, this.hashPassword);
+};
 
 export default mongoose.model("User", UserSchema);
