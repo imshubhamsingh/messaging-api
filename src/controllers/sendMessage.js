@@ -18,7 +18,11 @@ export default ({ config, db }) => {
       username: req.user.username
     });
 
-    if (!user.blockedUser.includes(req.body.to)) {
+    let receiverUser = await User.findOne({
+      username: req.body.to
+    });
+
+    if (!user.blockedUser.includes(req.body.to) && receiverUser) {
       newMessage.save((err, msg) => {
         if (err) {
           return res.status(400).send({

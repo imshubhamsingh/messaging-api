@@ -10,6 +10,7 @@ export default ({ config, db }) => {
 
   register.post("/", (req, res) => {
     let newUser = new User(req.body);
+    console.log(req.body);
     newUser.hashPassword = bcrypt.hashSync(req.body.password, parseInt(SALT));
     newUser.save((err, user) => {
       if (err) {
