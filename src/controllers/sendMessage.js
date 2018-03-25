@@ -23,7 +23,7 @@ export default ({ config, db }) => {
     });
 
     if (!receiverUser) {
-      res.status(404).json({
+      return res.status(404).json({
         message: "No such User"
       });
     }
