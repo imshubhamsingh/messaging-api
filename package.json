@@ -9,15 +9,10 @@
     "build": "babel src -s D -d dist",
     "clean": "rm -rf dist && mkdir dist",
     "heroku-postbuild": "npm i",
-    "start": "npm run clean && npm run build && NODE_ENV=production node ./dist/index.js"
+    "start":
+      "npm run clean && npm run build && NODE_ENV=production node ./dist/index.js"
   },
-  "keywords": [
-    "Express",
-    "RestAPI",
-    "MongoDB",
-    "Mongoose",
-    "Messaging"
-  ],
+  "keywords": ["Express", "RestAPI", "MongoDB", "Mongoose", "Messaging"],
   "author": "Shubham Singh",
   "license": "MIT",
   "dependencies": {
@@ -31,6 +26,7 @@
     "mongoose": "^5.0.11"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
