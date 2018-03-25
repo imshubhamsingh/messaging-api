@@ -17,6 +17,12 @@ export default ({ config, db }) => {
       username: req.user.username
     });
 
+    if (user.username === blockedUser.username) {
+      return res.status(401).json({
+        message: "Cannot Block yourself"
+      });
+    }
+
     if (!blockedUser || !user) {
       return res.status(401).json({
         message: "No such user exists"
