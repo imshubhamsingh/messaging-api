@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+import uniqueValidator from "mongoose-unique-validator";
+
 const Schema = mongoose.Schema;
 
 //= ===============================
@@ -37,6 +39,9 @@ let UserSchema = new Schema({
     default: Date.now
   }
 });
+
+// Apply the uniqueValidator plugin to userSchema.
+UserSchema.plugin(uniqueValidator);
 
 //= ===============================
 // User model methods
