@@ -9,7 +9,7 @@ import { isAuthenticate } from "../middlewares/auth";
 export default ({ config, db }) => {
   let block = Router();
 
-  block.post("/:username", isAuthenticate, async (req, res) => {
+  block.put("/:username", isAuthenticate, async (req, res) => {
     let blockedUser = await User.findOne({
       username: req.params.username
     });
@@ -24,8 +24,16 @@ export default ({ config, db }) => {
     }
 
     if (user.blockUser(blockedUser.username)) {
-      res.json({
-        message: "User Blocked successfully"
+      user.save((err, user) => {
+        if (err) {
+          return res.status(400).send({
+            message: err
+          });
+        } else {
+          return res.json({
+            message: "User Blocked successfully"
+          });
+        }
       });
     } else {
       res.json({

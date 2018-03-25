@@ -38,8 +38,8 @@ UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.hashPassword);
 };
 
-UserSchema.method.blockUser = function(username) {
-  if (!this.blockedUser.find(username)) {
+UserSchema.methods.blockUser = function(username) {
+  if (!this.blockedUser.includes(username)) {
     this.blockedUser.push(username);
     return true;
   } else {

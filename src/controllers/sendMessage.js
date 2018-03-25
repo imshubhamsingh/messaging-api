@@ -2,6 +2,7 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import Message from "../models/message";
+import User from "../models/user";
 
 import { SALT } from "../config";
 import { isAuthenticate } from "../middlewares/auth";
@@ -9,7 +10,7 @@ import { isAuthenticate } from "../middlewares/auth";
 export default ({ config, db }) => {
   let message = Router();
 
-  message.put("/", isAuthenticate, async (req, res) => {
+  message.post("/", isAuthenticate, async (req, res) => {
     let newMessage = new Message(req.body);
     newMessage.from = req.user.username;
 
@@ -17,7 +18,7 @@ export default ({ config, db }) => {
       username: req.user.username
     });
 
-    if (!user.blockedUser.find(req.body.to)) {
+    if (!user.blockedUser.includes(req.body.to)) {
       newMessage.save((err, msg) => {
         if (err) {
           return res.status(400).send({
