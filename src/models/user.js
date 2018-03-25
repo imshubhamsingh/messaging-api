@@ -24,6 +24,10 @@ let UserSchema = new Schema({
   hashPassword: {
     type: String
   },
+  blockedUser: {
+    type: Array,
+    default: []
+  },
   created: {
     type: Date,
     default: Date.now
@@ -32,6 +36,15 @@ let UserSchema = new Schema({
 
 UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.hashPassword);
+};
+
+UserSchema.method.blockUser = function(username) {
+  if (!this.blockedUser.find(username)) {
+    this.blockedUser.push(username);
+    return true;
+  } else {
+    return false;
+  }
 };
 
 export default mongoose.model("User", UserSchema);

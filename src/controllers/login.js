@@ -6,9 +6,9 @@ import User from "../models/user";
 import { SECRET } from "../config";
 
 export default ({ config, db }) => {
-  let message = Router();
+  let login = Router();
 
-  message.post("/", async (req, res) => {
+  login.post("/", async (req, res) => {
     let user = await User.findOne({
       username: req.body.username
     });
@@ -29,5 +29,5 @@ export default ({ config, db }) => {
     });
   });
 
-  return message;
+  return login;
 };

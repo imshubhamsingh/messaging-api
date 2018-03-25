@@ -6,9 +6,9 @@ import User from "../models/user";
 import { SALT } from "../config";
 
 export default ({ config, db }) => {
-  let message = Router();
+  let register = Router();
 
-  message.post("/", (req, res) => {
+  register.post("/", (req, res) => {
     let newUser = new User(req.body);
     newUser.hashPassword = bcrypt.hashSync(req.body.password, parseInt(SALT));
     newUser.save((err, user) => {
@@ -25,5 +25,5 @@ export default ({ config, db }) => {
     });
   });
 
-  return message;
+  return register;
 };

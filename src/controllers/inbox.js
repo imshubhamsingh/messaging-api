@@ -7,14 +7,14 @@ import { SALT } from "../config";
 import { isAuthenticate } from "../middlewares/auth";
 
 export default ({ config, db }) => {
-  let message = Router();
+  let inbox = Router();
 
-  message.get("/", isAuthenticate, async (req, res) => {
+  inbox.get("/", isAuthenticate, async (req, res) => {
     let messages = await Message.find({
       to: req.user.username
     });
     res.json([...messages]);
   });
 
-  return message;
+  return inbox;
 };
