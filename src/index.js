@@ -5,6 +5,7 @@ import path from "path";
 import { PORT, LIMIT, TOKENTIME, SECRET } from "./config";
 
 import routes from "./routes";
+import { errorHandler } from "./middlewares/error";
 
 const app = express();
 

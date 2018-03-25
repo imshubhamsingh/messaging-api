@@ -18,6 +18,17 @@ initializeDB(db => {
   router.use("/sendmessage", sendMessage({ config, db }));
   router.use("/inbox", inbox({ config, db }));
   router.use("/block", block({ config, db }));
+
+  // error handling
+  router.use((req, res, next) => {
+    if (!req.route)
+      return next(new Error("The requested resource couldn't be found"));
+    next();
+  });
+
+  router.use((err, req, res, next) => {
+    res.status(404).json({ message: err.message });
+  });
 });
 
 export default router;
