@@ -36,13 +36,13 @@ export default ({ config, db }) => {
             message: err
           });
         } else {
-          return res.json({
+          return res.status(200).json({
             message: "User Blocked successfully"
           });
         }
       });
     } else {
-      res.json({
+      res.status(304).json({
         message: "User is already in you block list"
       });
     }

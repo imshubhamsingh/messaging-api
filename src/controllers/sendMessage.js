@@ -23,7 +23,7 @@ export default ({ config, db }) => {
     });
 
     if (!receiverUser) {
-      res.json({
+      res.status(404).json({
         message: "No such User"
       });
     }
@@ -40,7 +40,7 @@ export default ({ config, db }) => {
         }
       });
     } else {
-      return res.json({
+      return res.status(550).json({
         message: "Cannot send message to blocked User"
       });
     }
