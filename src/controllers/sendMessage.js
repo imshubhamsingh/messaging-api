@@ -22,7 +22,12 @@ export default ({ config, db }) => {
       username: req.body.to
     });
 
-    if (!user.blockedUser.includes(req.body.to) && receiverUser) {
+    if (!receiverUser) {
+      res.json({
+        message: "No such User"
+      });
+    }
+    if (!user.blockedUser.includes(req.body.to)) {
       newMessage.save((err, msg) => {
         if (err) {
           return res.status(400).send({
