@@ -10,16 +10,12 @@ export const isAuthenticate = (req, res, next) => {
       req.user = jwt.verify(req.headers["authorization"], SECRET);
     } catch (err) {
       return res.status(401).json({
-        error: {
-          message: "Failed to authenticate token"
-        }
+        message: "Failed to authenticate token"
       });
     }
   } else {
     return res.status(401).json({
-      error: {
-        message: "No token provided"
-      }
+      message: "No token provided"
     });
   }
   next();

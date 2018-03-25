@@ -21,6 +21,10 @@ let MessageSchema = new Schema({
     type: String,
     trim: true,
     required: true
+  },
+  sendTime: {
+    type: Date,
+    default: Date.now
   }
 });
 
